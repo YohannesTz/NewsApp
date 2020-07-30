@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="10dp"
+    android:orientation="horizontal">
+
+    <!-- android:layout_marginTop="8.0dip"
+     android:layout_marginBottom="8.0dip">-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?android:selectableItemBackground"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/newstitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is title of the news"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/newsdetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="this is very good new detail text and i like the way she is makinfg it happen and it is place holder text"
+            android:fontFamily="sans-serif-light"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/newsUploader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Uploader"
+                android:fontFamily="sans-serif"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/newsDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2020-03-20"
+                android:fontFamily="sans-serif"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/newsViews"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:fontFamily="sans-serif"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

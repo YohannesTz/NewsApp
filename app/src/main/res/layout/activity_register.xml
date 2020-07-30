@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grad_solid"
+    tools:context="com.yohannes.app.dev.newsapp.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:text="Sign Up" />
+
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/usernameField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:fontFamily="sans-serif"
+            android:hint="User Name" />
+
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/passworField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:inputType="textPassword"
+            android:hint="Password" />
+
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/nameField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:inputType="textPersonName"
+            android:hint="Name" />
+
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/fname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:inputType="textPersonName"
+            android:hint="Father's Name " />
+
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/phoneNumfld"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:inputType="phone"
+            android:hint="Phone Number" />
+
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/bioTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:inputType="textPersonName"
+            android:hint="Bio " />
+
+        <Button
+            android:id="@+id/signupButton"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:background="@drawable/transparent_bg"
+            android:text="Sign up"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif"
+            android:layout_marginLeft="11dp"
+            android:layout_marginRight="11dp"
+            android:textSize="22sp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ChangeAvatar">
+
+    <item
+        android:id="@+id/fromGallery"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="FromGallery" />
+    <item
+        android:id="@+id/takePhoto"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="TakePhoto" />
+</menu>

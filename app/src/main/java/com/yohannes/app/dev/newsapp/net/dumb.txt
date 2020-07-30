@@ -1,0 +1,123 @@
+   public class FetchingNews extends AsyncTask<Void, Void, Void>{
+
+        private HttpURLConnection connection;
+
+        private HttpURLConnection getFetchNewsConnection(){
+            try {
+                final URL url = new URL(Util.WEBAPIADRESS);
+                final HttpURLConnection connection = connectToUrl(url, "GET");
+                return connection;
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                Log.i("eror", ex.toString());
+                return null;
+            }
+        }
+
+        private HttpURLConnection connectToUrl(final URL url, final String method) {
+            HttpURLConnection connection = null;
+            try {
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setConnectTimeout(Util.CONNECTION_TIMEOUT);
+                connection.setReadTimeout(Util.READ_TIMEOUT);
+                if (method.equals("POST")) {
+                    connection.setDoOutput(true);
+                }
+                connection.setRequestMethod(method);
+
+            } catch (IOException e) {
+                Log.i("error", "Unable to establish a stable Connection. please try again.");
+            }
+            return connection;
+        }
+
+        private String getServerResponse(HttpURLConnection connection){
+            try {
+                final InputStream stream = connection.getInputStream();
+                final BufferedInputStream bufferedInputStream = new BufferedInputStream(stream);
+                final StringBuilder builder = new StringBuilder();
+                final byte[] data = new byte[1024];
+                while (bufferedInputStream.read(data) > 0) {
+                    builder.append(new String(data));
+                    Arrays.fill(data, (byte) 0);
+                }
+                final String result = builder.toString();
+                final StringBuilder fResult = new StringBuilder();
+                for (final char chr : result.toCharArray()) {
+                    if (chr != '\0') {
+                        fResult.append(chr);
+                    }
+                }
+                // return new JSONObject(fResult.toString());
+                return fResult.toString();
+            } catch (Exception x) {
+                Log.i("eror", "Unable to establish a stable Connection. please try again.");
+                return null;
+            }
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            connection = getFetchNewsConnection();
+            if(connection != null){
+                String response = getServerResponse(connection);
+
+                if (response != null && response.equals("")) {
+                    Log.e("Fetched News", response);
+                    if (Util.isJsonvalid(response)) {
+                        getNewsFromresponse(response);
+                    }
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+        }
+
+        public void getNewsFromresponse(String response) {
+            try{
+                JSONArray jsonArray = new JSONArray(response);
+                for (int i = 0; i < jsonArray.length(); i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    News fetchedNews = new News(jsonObject.getString("newstitle"), jsonObject.getString("newsdetail"), jsonObject.getString("uploader"));
+                    newsArrayList.add(fetchedNews);
+                    newsAdapter.notifyItemInserted(newsArrayList.size());
+                    newsAdapter.setLoaded();
+                }
+            }catch (JSONException ex){
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    --------------------------------------------------------------------------------------------------
+
+            newsAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
+                @Override
+                public void onLoadMore() {
+                    newsArrayList.add(null);
+                    newsAdapter.notifyItemInserted(newsArrayList.size() - 1);
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            newsArrayList.remove(newsArrayList.size() - 1);
+                            newsAdapter.notifyItemRemoved(newsArrayList.size());
+
+                            int start = newsArrayList.size();
+                            int end = start + 20;
+
+                            for (int i = start +1; i <= end; i++){
+                                newsArrayList.add(new News("News " + i, "This is the news detail for " + i, "@someone"));
+                                newsAdapter.notifyItemInserted(newsArrayList.size());
+                            }
+
+                            newsAdapter.setLoaded();
+                        }
+                    }, 3000);
+                }
+            });
