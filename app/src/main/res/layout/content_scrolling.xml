@@ -38,18 +38,18 @@
             android:text=""
             android:textSize="23sp" />
 
-        <Button
-            android:id="@+id/saveArticle"
-            style="?android:textAppearanceSmall"
+        <TextView
+            android:id="@+id/save_article"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:padding="8dp"
+            android:textColor="@color/backgroundColor"
             android:background="@drawable/button_background"
-            android:text="Save Article"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
             android:fontFamily="sans-serif-light"
-            android:textSize="25sp" />
+            android:layout_margin="20dp"
+            android:text="Save Article" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

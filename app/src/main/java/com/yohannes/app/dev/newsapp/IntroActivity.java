@@ -16,7 +16,7 @@ import com.yohannes.app.dev.newsapp.models.IntroAdapter;
 public class IntroActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
-    private int[] layouts = {R.layout.intro_screen1, R.layout.intro_screen2, R.layout.intro_screen3};
+    private int[] layouts = {R.layout.intro_screen4, R.layout.intro_screen1, R.layout.intro_screen2, R.layout.intro_screen3};
 
     IntroAdapter introAdapter;
     ImageView[] imageViews;
