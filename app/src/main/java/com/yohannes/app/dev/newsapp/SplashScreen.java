@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 /*import com.google.android.gms.security.ProviderInstaller;*/
+import com.yohannes.app.dev.newsapp.models.IntroAdapter;
 import com.yohannes.app.dev.newsapp.models.User;
 import com.yohannes.app.dev.newsapp.util.DbManager;
 import com.yohannes.app.dev.newsapp.util.Util;
@@ -39,7 +40,7 @@ public class SplashScreen extends AppCompatActivity {
 
     public void gotoAcitivity(int activity) {
         if (activity == 1) {
-            Intent logInintent = new Intent(this, LoginActivity.class);
+            Intent logInintent = new Intent(this, IntroActivity.class);
             startActivity(logInintent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();

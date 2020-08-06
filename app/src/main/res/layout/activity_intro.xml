@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context="com.yohannes.app.dev.newsapp.IntroActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/dotLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dots_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dots_margin_bottom"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha=".5"
+        android:layout_above="@+id/dotLayout"
+        android:background="@color/backgroundColor" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_background"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:textColor="@color/backgroundColor"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/button_background"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Skip"
+        android:textAllCaps="false"
+        android:textColor="@color/backgroundColor"
+        android:textSize="20sp" />
+</RelativeLayout>

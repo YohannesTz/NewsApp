@@ -25,6 +25,7 @@
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -51,7 +52,11 @@
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ChangeAvatar" />
-        <activity android:name=".SavedArticles"></activity>
+        <activity android:name=".SavedArticles" />
+        <activity
+            android:name=".IntroActivity"
+            android:label="IntroActivity"
+            android:theme="@style/SplashScreenTheme"></activity>
     </application>
 
 </manifest>
