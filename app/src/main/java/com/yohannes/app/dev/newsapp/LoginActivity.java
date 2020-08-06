@@ -42,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private Button signin_button;
+    //private Button signin_button;
+    private TextView signin_button;
     private TextView registerText;
 
     private String usename;
@@ -58,7 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
-        signin_button = (Button) findViewById(R.id.email_sign_in_button);
+        //signin_button = (Button) findViewById(R.id.email_sign_in_button);
+        signin_button = (TextView) findViewById(R.id.email_sign_in_button);
         registerText = (TextView) findViewById(R.id.registerTextViw);
 
         signin_button.setOnClickListener(new OnClickListener() {

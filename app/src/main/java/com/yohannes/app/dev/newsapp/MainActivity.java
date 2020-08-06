@@ -79,9 +79,6 @@ public class MainActivity extends AppCompatActivity
     private ImageView userAvatarimage;
     private TextView emptyText;
 
-
-    private Handler handler;
-    private Retrofit retrofit;
     private RequestQueue rq;
 
     @Override
@@ -96,17 +93,6 @@ public class MainActivity extends AppCompatActivity
 
         recyclerView = (RecyclerView) findViewById(R.id.newsRecyclerList);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                //setupData();
-                getNews();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -117,17 +103,14 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
 
-        handler = new Handler();
-        userNameText = (TextView) header_view.findViewById(R.id.usernameText);
-        nameText = (TextView) header_view.findViewById(R.id.nameText);
-        userAvatarimage = (ImageView) header_view.findViewById(R.id.userAvatarImage);
+        userNameText = header_view.findViewById(R.id.usernameText);
+        nameText = header_view.findViewById(R.id.nameText);
+        userAvatarimage = header_view.findViewById(R.id.userAvatarImage);
         emptyText = new TextView(this);
         emptyText.setText("Ooops! No news today!");
         emptyText.setVisibility(View.GONE);
         setupData();
 
-        //loadInitialData();
-        //new FetchingNews().execute();
         loadFirstData();
 
         recyclerView.setHasFixedSize(true);
@@ -144,47 +127,19 @@ public class MainActivity extends AppCompatActivity
             emptyText.setVisibility(View.GONE);
         }
 
-/*        newsAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                newsArrayList.add(null);
-                newsAdapter.notifyItemInserted(newsArrayList.size() - 1);
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        newsArrayList.remove(newsArrayList.size() - 1);
-                        newsAdapter.notifyItemRemoved(newsArrayList.size());
-
-                        int start = newsArrayList.size();
-                        int end = start + 20;
-
-                        for (int i = start +1; i <= end; i++){
-                            newsArrayList.add(new News("News " + i, "This is the news detail for " + i, "@someone"));
-                            newsAdapter.notifyItemInserted(newsArrayList.size());
-                        }
-
-                        newsAdapter.setLoaded();
-                    }
-                }, 3000);
-            }
-        });*/
         newsAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
                 newsArrayList.add(null);
                 newsAdapter.notifyItemInserted(newsArrayList.size());
                 getNews();
-                //new FetchingNews().execute();
             }
         });
     }
 
 
     private void loadFirstData() {
-        for (int i = 1; i <= 1; i++) {
-            newsArrayList.add(new News(10, "@someone", "This is the news Header", "this is the news content", "https://addisnews.000webhostapp.com/news/userProfiles/IMG_20200327_175609_473.jpg", "2020-03-20", 10));
-        }
+        newsArrayList.add(new News(10, "@someone", "This is the news Header", "this is the news content", "https://addisnews.000webhostapp.com/news/userProfiles/IMG_20200327_175609_473.jpg", "2020-03-20", 10));
     }
 
     @Override
@@ -267,7 +222,6 @@ public class MainActivity extends AppCompatActivity
             nameText.setText(loggedInUser.getName() + " " + loggedInUser.getFname());
 
             Picasso.with(MainActivity.this).load(loggedInUser.getAvatar_link()).transform(new CircleAvatar()).into(userAvatarimage);
-            //Picasso.with(MainActivity.this).load(loggedInUser.getAvatar_link()).
         }
     }
 
@@ -277,7 +231,9 @@ public class MainActivity extends AppCompatActivity
             public void onResponse(JSONArray jsonArray) {
                 Log.e("JsonArrayRequest", jsonArray.toString());
                 Log.e("JsonArraySize", String.valueOf(jsonArray.length()));
-                newsArrayList.remove(newsArrayList.size() - 1);
+                if (newsArrayList.size() > 1) {
+                    newsArrayList.remove(newsArrayList.size() - 1);
+                }
                 newsAdapter.notifyItemRemoved(newsArrayList.size());
 
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -285,7 +241,6 @@ public class MainActivity extends AppCompatActivity
                     News fnews = new News();
                     try {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        //fnews = new News(jsonObject.getString("newsHeader"), jsonObject.getString("newsContent"), jsonObject.getString("uploader"));
                         fnews = new News(jsonObject.getInt("id"), jsonObject.getString("uploader"), jsonObject.getString("newsHeader"), jsonObject.getString("newsContent"), jsonObject.getString("detailImage"), jsonObject.getString("date"), jsonObject.getInt("view"));
                     } catch (JSONException e) {
                         e.printStackTrace();

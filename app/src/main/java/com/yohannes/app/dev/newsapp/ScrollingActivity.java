@@ -1,23 +1,18 @@
 package com.yohannes.app.dev.newsapp;
 
-import android.app.AlertDialog;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,17 +21,13 @@ import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.yohannes.app.dev.newsapp.models.News;
-import com.android.volley.Request;
 import com.yohannes.app.dev.newsapp.models.NewsDetail;
-import com.yohannes.app.dev.newsapp.util.DbManager;
 import com.yohannes.app.dev.newsapp.util.ImageUtilty;
 import com.yohannes.app.dev.newsapp.util.SavedPostManager;
 import com.yohannes.app.dev.newsapp.util.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.ByteArrayInputStream;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -65,22 +56,14 @@ public class ScrollingActivity extends AppCompatActivity {
         newsDetailtv = (TextView) findViewById(R.id.largeText);
         scrollImageView = (ImageView) findViewById(R.id.scrollImageView);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setTitle(" ");
+        collapsingToolbarLayout.setTitle(null);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpanededAppBar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-        toolbar.setTitle(" ");
+        toolbar.setTitle(null);
 
         if (newsDetail != null) {
             configureWidgets();
         }
-
-/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                savepost(newsDetail);
-            }
-        });*/
     }
 
     private void savepost(NewsDetail newsDetail) {
@@ -105,21 +88,17 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
     private void configureWidgets() {
-        //collapsingToolbarLayout.setTitle(newsDetail.getNewsTitle());
-        //collapsingToolbarLayout.setTitle("Article");
         titletv.setText(newsDetail.getNewsTitle());
         newsDetailtv.setText("\n" + newsDetail.getNewsDetail() + "\n" + "\n");
         Picasso.with(this).load(newsDetail.getImageUrl()).into(scrollImageView, new Callback() {
             @Override
             public void onSuccess() {
-                //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), scrollImageView.getId());
                 Bitmap bitmap = ((BitmapDrawable) scrollImageView.getDrawable()).getBitmap();
-                //getVibrantColor(bitmap);
             }
 
             @Override
             public void onError() {
-
+                //// TODO: 8/6/2020 Add an error catching method
             }
         });
     }
@@ -146,4 +125,11 @@ public class ScrollingActivity extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
     }
+
+/*    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.article_menu, menu);
+        return true;
+    }*/
 }

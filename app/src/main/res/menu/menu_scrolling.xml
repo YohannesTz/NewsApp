@@ -2,9 +2,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.yohannes.app.dev.newsapp.ScrollingActivity">
+
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/save_article_menu"
+        android:icon="@drawable/ic_offline_pin_black_24dp"
+        android:title="Save" />
+
 </menu>
