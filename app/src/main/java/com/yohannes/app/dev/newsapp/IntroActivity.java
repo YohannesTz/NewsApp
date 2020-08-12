@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.yohannes.app.dev.newsapp.models.IntroAdapter;
 
@@ -21,7 +22,7 @@ public class IntroActivity extends AppCompatActivity {
     IntroAdapter introAdapter;
     ImageView[] imageViews;
 
-    Button btn_skip, btn_next;
+    TextView btn_skip, btn_next;
     LinearLayout linearLayout;
 
     @Override
@@ -30,8 +31,8 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        btn_skip = (Button) findViewById(R.id.btn_skip);
-        btn_next = (Button) findViewById(R.id.btn_next);
+        btn_skip = (TextView) findViewById(R.id.btn_skip);
+        btn_next = (TextView) findViewById(R.id.btn_next);
         linearLayout = (LinearLayout) findViewById(R.id.dotLayout);
 
         introAdapter = new IntroAdapter(layouts, IntroActivity.this);

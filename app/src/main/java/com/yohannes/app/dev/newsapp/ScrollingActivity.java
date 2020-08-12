@@ -56,10 +56,10 @@ public class ScrollingActivity extends AppCompatActivity {
         newsDetailtv = (TextView) findViewById(R.id.largeText);
         scrollImageView = (ImageView) findViewById(R.id.scrollImageView);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setTitle(null);
+        collapsingToolbarLayout.setTitle("");
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpanededAppBar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-        toolbar.setTitle(null);
+        toolbar.setTitle("");
 
         if (newsDetail != null) {
             configureWidgets();
@@ -84,7 +84,7 @@ public class ScrollingActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+        //overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }
 
     private void configureWidgets() {
@@ -126,10 +126,10 @@ public class ScrollingActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-/*    @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.article_menu, menu);
+        inflater.inflate(R.menu.menu_scrolling, menu);
         return true;
-    }*/
+    }
 }

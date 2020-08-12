@@ -91,6 +91,6 @@ public class News implements Serializable {
 
     @Override
     public String toString() {
-        return "News has id of " + id + " and uploader of " + uploader;
+        return "News has id of " + id + " and uploader of " + uploader + " and NewsHeader " + newsHeader;
     }
 }

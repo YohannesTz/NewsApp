@@ -22,7 +22,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text=""
+            android:text="Loading ..."
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -35,21 +35,21 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:fontFamily="sans-serif-light"
-            android:text=""
+            android:text="Loading ..."
             android:textSize="23sp" />
 
-        <TextView
-            android:id="@+id/save_article"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="26sp"
-            android:padding="8dp"
-            android:textColor="@color/backgroundColor"
-            android:background="@drawable/button_background"
-            android:fontFamily="sans-serif-light"
-            android:layout_margin="20dp"
-            android:text="Save Article" />
+        <!--  <TextView
+              android:id="@+id/save_article"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:textSize="26sp"
+              android:padding="8dp"
+              android:textColor="@color/backgroundColor"
+              android:background="@drawable/button_background"
+              android:fontFamily="sans-serif-light"
+              android:layout_margin="20dp"
+              android:text="Save Article" />-->
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

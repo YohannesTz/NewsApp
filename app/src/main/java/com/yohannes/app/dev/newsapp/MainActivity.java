@@ -1,41 +1,34 @@
 package com.yohannes.app.dev.newsapp;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 import com.yohannes.app.dev.newsapp.models.News;
 import com.yohannes.app.dev.newsapp.models.NewsListAdapter;
 import com.yohannes.app.dev.newsapp.models.OnLoadMoreListener;
-import com.yohannes.app.dev.newsapp.models.SavedArticle;
 import com.yohannes.app.dev.newsapp.models.User;
-import com.yohannes.app.dev.newsapp.net.JSONResponse;
-import com.yohannes.app.dev.newsapp.net.RequestInterface;
-import com.yohannes.app.dev.newsapp.net.TLSSocketFactory;
 import com.yohannes.app.dev.newsapp.util.CircleAvatar;
 import com.yohannes.app.dev.newsapp.util.DbManager;
 import com.yohannes.app.dev.newsapp.util.Util;
@@ -44,24 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -139,7 +115,11 @@ public class MainActivity extends AppCompatActivity
 
 
     private void loadFirstData() {
-        newsArrayList.add(new News(10, "@someone", "This is the news Header", "this is the news content", "https://addisnews.000webhostapp.com/news/userProfiles/IMG_20200327_175609_473.jpg", "2020-03-20", 10));
+        News newsFirst = (News) getIntent().getSerializableExtra("InitialData");
+        Log.e("FirstData", newsFirst.toString());
+        newsArrayList.add((News) getIntent().getSerializableExtra("InitialData"));
+        //getNews();
+        //newsAdapter.notifyItemInserted(newsArrayList.size());
     }
 
     @Override
@@ -161,7 +141,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -170,7 +149,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -190,10 +168,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return false;
-    }
-
-    private void populateData() {
-
     }
 
     public void gotoLoginActivity() {
@@ -220,22 +194,21 @@ public class MainActivity extends AppCompatActivity
         if (loggedInUser != null) {
             userNameText.setText(loggedInUser.getUsername());
             nameText.setText(loggedInUser.getName() + " " + loggedInUser.getFname());
-
             Picasso.with(MainActivity.this).load(loggedInUser.getAvatar_link()).transform(new CircleAvatar()).into(userAvatarimage);
         }
     }
 
     private void getNews() {
+        System.out.println("getNew was Called");
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Util.WEBAPIADRESS, null, new com.android.volley.Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
                 Log.e("JsonArrayRequest", jsonArray.toString());
                 Log.e("JsonArraySize", String.valueOf(jsonArray.length()));
-                if (newsArrayList.size() > 1) {
+                //if (newsArrayList.size() > 0) {
                     newsArrayList.remove(newsArrayList.size() - 1);
-                }
                 newsAdapter.notifyItemRemoved(newsArrayList.size());
-
+                //}
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     News fnews = new News();

@@ -28,29 +28,29 @@
         android:layout_above="@+id/dotLayout"
         android:background="@color/backgroundColor" />
 
-    <Button
+    <TextView
+        android:layout_margin="10dp"
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/button_background"
         android:fontFamily="sans-serif-condensed"
         android:text="Next"
         android:textAllCaps="false"
-        android:textColor="@color/backgroundColor"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
 
-    <Button
+    <TextView
+        android:layout_margin="10dp"
         android:id="@+id/btn_skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/button_background"
         android:fontFamily="sans-serif-condensed"
         android:text="Skip"
         android:textAllCaps="false"
-        android:textColor="@color/backgroundColor"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
 </RelativeLayout>
