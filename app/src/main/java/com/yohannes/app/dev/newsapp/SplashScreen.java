@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 /*import com.google.android.gms.security.ProviderInstaller;*/
 import com.yohannes.app.dev.newsapp.models.News;
@@ -100,22 +101,33 @@ public class SplashScreen extends AppCompatActivity {
         protected void onPostExecute(String aVoid) {
             super.onPostExecute(aVoid);
             try {
-                Log.e("resultreal", result);
-                JSONArray jsonArray = new JSONArray(result);
-                JSONObject jsonObject = jsonArray.getJSONObject(0);
-                news = new News(jsonObject.getInt("id"), jsonObject.getString("uploader"), jsonObject.getString("newsHeader"), jsonObject.getString("newsContent"), jsonObject.getString("detailImage"), jsonObject.getString("date"), jsonObject.getInt("view"));
+                if (result == null) {
+                    Toast.makeText(this.context, "Connection Problem Tryagain!", Toast.LENGTH_LONG).show();
+                    try {
+                        Thread.sleep(2500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    finishAffinity();
+                } else {
+                    Log.e("resultreal", result);
+                    JSONArray jsonArray = new JSONArray(result);
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    news = new News(jsonObject.getInt("id"), jsonObject.getString("uploader"), jsonObject.getString("newsHeader"), jsonObject.getString("newsContent"), jsonObject.getString("detailImage"), jsonObject.getString("date"), jsonObject.getInt("view"));
+
+                    dbManager = new DbManager(context, null, 1);
+                    User user = dbManager.getLastLoggedinUser();
+
+                    if (user == null) {
+                        gotoAcitivity(1, news);
+                    } else {
+                        gotoAcitivity(0, news);
+                    }
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            dbManager = new DbManager(context, null, 1);
-            User user = dbManager.getLastLoggedinUser();
-
-            if (user == null) {
-                gotoAcitivity(1, news);
-            } else {
-                gotoAcitivity(0, news);
-            }
         }
     }
 }
