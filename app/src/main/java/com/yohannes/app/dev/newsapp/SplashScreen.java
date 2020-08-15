@@ -47,7 +47,7 @@ public class SplashScreen extends AppCompatActivity {
 
     public void gotoAcitivity(int activity, News initdata) {
         if (activity == 1) {
-            Intent logInintent = new Intent(this, LoginActivity.class);
+            Intent logInintent = new Intent(this, IntroActivity.class);
             logInintent.putExtra("InitialData", news);
             startActivity(logInintent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
