@@ -10,7 +10,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -56,8 +57,8 @@ public class ChangeAvatar extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        avatarFullScreen = (ImageView) findViewById(R.id.avatarFullScreen);
-        uploadImagebtn = (Button) findViewById(R.id.uploadImagebtn);
+        avatarFullScreen = findViewById(R.id.avatarFullScreen);
+        uploadImagebtn = findViewById(R.id.uploadImagebtn);
 
         DbManager dbManager = new DbManager(this, null, 1);
         final User loggedInuser = dbManager.getLastLoggedinUser();
@@ -109,7 +110,7 @@ public class ChangeAvatar extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
-            Log.e("Result Code", String.valueOf(requestCode) + ", " + String.valueOf(resultCode) + ", " + String.valueOf(RESULT_OK));
+            Log.e("Result Code", requestCode + ", " + resultCode + ", " + RESULT_OK);
             switch (requestCode) {
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {
@@ -266,7 +267,7 @@ public class ChangeAvatar extends AppCompatActivity {
                 String response = getServerResponse(connection);
                 Log.e("ChangeAvater", response);
                 if (!Util.isJsonvalid(response)) {
-                    resultTag = String.valueOf(response.replaceAll("\"", ""));
+                    resultTag = response.replaceAll("\"", "");
                     Log.e("Server Response", response);
                 } else {
                     Log.e("Sever Response", response);

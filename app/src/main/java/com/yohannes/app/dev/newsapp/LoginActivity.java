@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.yohannes.app.dev.newsapp.models.User;
 import com.yohannes.app.dev.newsapp.util.DbManager;
@@ -38,7 +39,7 @@ import java.util.Arrays;
 public class LoginActivity extends AppCompatActivity {
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -57,11 +58,11 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mEmailView = findViewById(R.id.email);
+        mPasswordView = findViewById(R.id.password);
         //signin_button = (Button) findViewById(R.id.email_sign_in_button);
-        signin_button = (TextView) findViewById(R.id.email_sign_in_button);
-        registerText = (TextView) findViewById(R.id.registerTextViw);
+        signin_button = findViewById(R.id.email_sign_in_button);
+        registerText = findViewById(R.id.registerTextViw);
 
         signin_button.setOnClickListener(new OnClickListener() {
             @Override
@@ -186,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
                 String response = getServerResponse(connection);
                 Log.e("newsApp", response);
                 if (!Util.isJsonvalid(response)) {
-                    resultTag = String.valueOf(response.replaceAll("\"", ""));
+                    resultTag = response.replaceAll("\"", "");
                 } else {
                     DbManager dbManager = new DbManager(getApplicationContext(), null, 1);
                     dbManager.addUser(loggedInUser(response));

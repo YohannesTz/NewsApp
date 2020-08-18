@@ -1,19 +1,15 @@
 package com.yohannes.app.dev.newsapp.models;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.yohannes.app.dev.newsapp.R;
-import com.yohannes.app.dev.newsapp.ScrollingActivity;
 
 import java.util.List;
 
@@ -36,8 +32,8 @@ public class SavedArticleAdapter extends ArrayAdapter {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.saved_article_row, null, false);
 
-        TextView titleTv = (TextView) customView.findViewById(R.id.savedArticleheader);
-        TextView detailTv = (TextView) customView.findViewById(R.id.savedArticleDetail);
+        TextView titleTv = customView.findViewById(R.id.savedArticleheader);
+        TextView detailTv = customView.findViewById(R.id.savedArticleDetail);
 
         titleTv.setText(_savedArticles.get(position).getTitle());
         detailTv.setText(_savedArticles.get(position).getDetail());

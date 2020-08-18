@@ -1,10 +1,10 @@
 package com.yohannes.app.dev.newsapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.yohannes.app.dev.newsapp.models.NewsListAdapter;
 import com.yohannes.app.dev.newsapp.models.SavedArticle;
@@ -23,7 +23,7 @@ public class SavedArticles extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_articles);
 
-        savedArticlesListView = (ListView) findViewById(R.id.saved_list);
+        savedArticlesListView = findViewById(R.id.saved_list);
 
         SavedPostManager savedPostManager = new SavedPostManager(this, null, 1);
         _savedArticles = savedPostManager.getSavedArticles();

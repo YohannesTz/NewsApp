@@ -1,9 +1,10 @@
 package com.yohannes.app.dev.newsapp;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,10 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        btn_skip = (TextView) findViewById(R.id.btn_skip);
-        btn_next = (TextView) findViewById(R.id.btn_next);
-        linearLayout = (LinearLayout) findViewById(R.id.dotLayout);
+        viewPager = findViewById(R.id.view_pager);
+        btn_skip = findViewById(R.id.btn_skip);
+        btn_next = findViewById(R.id.btn_next);
+        linearLayout = findViewById(R.id.dotLayout);
 
         introAdapter = new IntroAdapter(layouts, IntroActivity.this);
         viewPager.setAdapter(introAdapter);

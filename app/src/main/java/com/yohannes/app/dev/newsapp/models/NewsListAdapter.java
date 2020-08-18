@@ -3,13 +3,14 @@ package com.yohannes.app.dev.newsapp.models;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yohannes.app.dev.newsapp.R;
 import com.yohannes.app.dev.newsapp.ScrollingActivity;
@@ -118,11 +119,11 @@ public class NewsListAdapter extends RecyclerView.Adapter {
 
         private NewsViewHolder(View v) {
             super(v);
-            newsTitle = (TextView) v.findViewById(R.id.newstitle);
-            newsDetail = (TextView) v.findViewById(R.id.newsdetail);
-            uploader = (TextView) v.findViewById(R.id.newsUploader);
-            date = (TextView) v.findViewById(R.id.newsDate);
-            viewtv = (TextView) v.findViewById(R.id.newsViews);
+            newsTitle = v.findViewById(R.id.newstitle);
+            newsDetail = v.findViewById(R.id.newsdetail);
+            uploader = v.findViewById(R.id.newsUploader);
+            date = v.findViewById(R.id.newsDate);
+            viewtv = v.findViewById(R.id.newsViews);
 
             context = v.getContext();
 
@@ -143,7 +144,7 @@ public class NewsListAdapter extends RecyclerView.Adapter {
 
         private ProgressViewHolder(View v) {
             super(v);
-            progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
+            progressBar = v.findViewById(R.id.progressBar);
         }
     }
 }

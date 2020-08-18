@@ -3,14 +3,14 @@ package com.yohannes.app.dev.newsapp;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.yohannes.app.dev.newsapp.models.User;
 import com.yohannes.app.dev.newsapp.util.Util;
@@ -42,13 +42,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText username_field = (EditText) findViewById(R.id.usernameField);
-        final EditText password_field = (EditText) findViewById(R.id.passworField);
-        final EditText name_field = (EditText) findViewById(R.id.nameField);
-        final EditText fname_field = (EditText) findViewById(R.id.fname);
-        final EditText phonenum_field = (EditText) findViewById(R.id.phoneNumfld);
-        final EditText bio_field = (EditText) findViewById(R.id.bioTextField);
-        Button signupButotn = (Button) findViewById(R.id.signupButton);
+        final EditText username_field = findViewById(R.id.usernameField);
+        final EditText password_field = findViewById(R.id.passworField);
+        final EditText name_field = findViewById(R.id.nameField);
+        final EditText fname_field = findViewById(R.id.fname);
+        final EditText phonenum_field = findViewById(R.id.phoneNumfld);
+        final EditText bio_field = findViewById(R.id.bioTextField);
+        Button signupButotn = findViewById(R.id.signupButton);
 
 
         signupButotn.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (phonenum_field.getText().toString().startsWith("+251") && !phonenum_field.getText().toString().startsWith("09"))
                     phonenum = phonenum_field.getText().toString();
                 else
-                    phonenum = String.valueOf(phonenum = phonenum_field.getText().toString().replace("09", "+251"));
+                    phonenum = phonenum = phonenum_field.getText().toString().replace("09", "+251");
 
                 bio = bio_field.getText().toString();
                 avatar_link = "https://addisnews.000webhostapp.com/news/images/dude.png"; //just for now
@@ -171,7 +171,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.e("newsApp", response);
                 if (!Util.isJsonvalid(response)) {
                     Log.e("RegisterActivity", response);
-                    resultTag = String.valueOf(response.replaceAll("\"", ""));
+                    resultTag = response.replaceAll("\"", "");
                 } else {
                     Log.e("RegisterActivity", "Signup Sucessful!");
                     resultTag = "SignUp Sucessful!";

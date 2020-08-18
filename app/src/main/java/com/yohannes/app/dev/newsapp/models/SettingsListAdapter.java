@@ -1,14 +1,14 @@
 package com.yohannes.app.dev.newsapp.models;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.yohannes.app.dev.newsapp.R;
 
@@ -36,8 +36,8 @@ public class SettingsListAdapter extends ArrayAdapter {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.settings_listview_row, null, false);
 
-        TextView settingsTitleText = (TextView) customView.findViewById(R.id.settings_title);
-        TextView settingsValueText = (TextView) customView.findViewById(R.id.settings_value);
+        TextView settingsTitleText = customView.findViewById(R.id.settings_title);
+        TextView settingsValueText = customView.findViewById(R.id.settings_value);
 
         settingsTitleText.setText(settingsTitle[position]);
         settingsValueText.setText(settingsValue[position]);
