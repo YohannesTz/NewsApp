@@ -52,6 +52,13 @@ public class SplashScreen extends AppCompatActivity {
         }
     }
 
+    public void gotoOfflinePage() {
+        Intent offlineIntent = new Intent(this, NoConnection.class);
+        startActivity(offlineIntent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        finish();
+    }
+
     private class CheckDatabase extends AsyncTask<String, String, String> {
 
         private Context context;
@@ -94,12 +101,13 @@ public class SplashScreen extends AppCompatActivity {
             try {
                 if (result == null) {
                     Toast.makeText(this.context, "Connection Problem Tryagain!", Toast.LENGTH_LONG).show();
-                    try {
+                    /*try {
                         Thread.sleep(2500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    finishAffinity();
+                    finishAffinity();*/
+                    gotoOfflinePage();
                 } else {
                     Log.e("resultreal", result);
                     JSONArray jsonArray = new JSONArray(result);

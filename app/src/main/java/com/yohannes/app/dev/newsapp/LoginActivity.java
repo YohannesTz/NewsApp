@@ -177,7 +177,7 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.setMessage("Signing in...");
             progressDialog.setCancelable(false);
             progressDialog.setIndeterminate(true);
-            progressDialog.show();
+//            progressDialog.show();
         }
 
         @Override
@@ -208,9 +208,9 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
             showToast(resultTag);
-            if (connection != null) {
+            /*if (connection != null) {
                 connection.disconnect();
-            }
+            }*/
         }
 
         private User loggedInUser(String serverresult) {

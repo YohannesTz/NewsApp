@@ -119,8 +119,6 @@ public class MainActivity extends AppCompatActivity
         News newsFirst = (News) getIntent().getSerializableExtra("InitialData");
         Log.e("FirstData", newsFirst.toString());
         newsArrayList.add((News) getIntent().getSerializableExtra("InitialData"));
-        //getNews();
-        //newsAdapter.notifyItemInserted(newsArrayList.size());
     }
 
     @Override
@@ -142,11 +140,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
