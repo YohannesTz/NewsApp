@@ -28,8 +28,8 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_settings);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = findViewById(R.id.toolbar_settings);
+        setSupportActionBar(toolbar);*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -40,7 +40,7 @@ public class Settings extends AppCompatActivity {
         settingsValue = new String[]{loggedInUser.getUsername(), loggedInUser.getPassword(), loggedInUser.getName(), loggedInUser.getFname(), String.valueOf(loggedInUser.getPhonenum()), loggedInUser.getBio()};
 
         SettingsListAdapter settingsListAdapter = new SettingsListAdapter(getApplicationContext(), settingsTitles, settingsValue);
-        userAvatarimage = findViewById(R.id.settingsAvatarView);
+        //userAvatarimage = findViewById(R.id.settingsAvatarView);
         //ListView settingsListView = (ListView) findViewById(R.id.settings_List);
 
         TextView userName = findViewById(R.id.settings_username_text);
@@ -51,7 +51,7 @@ public class Settings extends AppCompatActivity {
         TextView bio = findViewById(R.id.settings_bio_text);
 
 
-        Picasso.with(Settings.this).load(loggedInUser.getAvatar_link()).transform(new CircleAvatar()).into(userAvatarimage);
+//        Picasso.with(Settings.this).load(loggedInUser.getAvatar_link()).transform(new CircleAvatar()).into(userAvatarimage);
 
         userName.setText(loggedInUser.getUsername());
         password.setText(loggedInUser.getPassword());
@@ -62,14 +62,14 @@ public class Settings extends AppCompatActivity {
 
         //settingsListView.setAdapter(settingsListAdapter);
 
-        userAvatarimage.setOnClickListener(new View.OnClickListener() {
+        /*userAvatarimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent changeAvatar = new Intent(getApplicationContext(), ChangeAvatar.class);
                 startActivity(changeAvatar);
                 finish();
             }
-        });
+        });*/
     }
 
     @Override

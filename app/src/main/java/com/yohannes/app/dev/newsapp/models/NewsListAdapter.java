@@ -3,6 +3,7 @@ package com.yohannes.app.dev.newsapp.models;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,14 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+import com.yohannes.app.dev.newsapp.Articlemedium;
 import com.yohannes.app.dev.newsapp.R;
 import com.yohannes.app.dev.newsapp.ScrollingActivity;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -87,6 +92,9 @@ public class NewsListAdapter extends RecyclerView.Adapter {
             ((NewsViewHolder) holder).uploader.setText(singleNews.getUploader());
             ((NewsViewHolder) holder).date.setText(singleNews.getDate());
             //((NewsViewHolder) holder).viewtv.setText(singleNews.getView());
+            //((NewsViewHolder) holder).profileImageView.setImageURI(Uri.parse("https://robohash.org/" + singleNews.getUploader()));
+            Picasso.with(this.context).load("https://robohash.org/" + singleNews.getUploader()).into(((NewsViewHolder) holder).profileImageView);
+
             ((NewsViewHolder) holder).newsInside = singleNews;
         } else {
             ((ProgressViewHolder) holder).progressBar.setIndeterminate(true);
@@ -114,6 +122,7 @@ public class NewsListAdapter extends RecyclerView.Adapter {
         private TextView uploader;
         private TextView date;
         private TextView viewtv;
+        private CircleImageView profileImageView;
 
         private News newsInside;
 
@@ -124,13 +133,14 @@ public class NewsListAdapter extends RecyclerView.Adapter {
             uploader = v.findViewById(R.id.newsUploader);
             date = v.findViewById(R.id.newsDate);
             viewtv = v.findViewById(R.id.newsViews);
+            profileImageView = v.findViewById(R.id.profileImageView);
 
             context = v.getContext();
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent detailView = new Intent(context, ScrollingActivity.class);
+                    Intent detailView = new Intent(context, Articlemedium.class);
                     detailView.putExtra("News", newsInside);
                     context.startActivity(detailView);
                     //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

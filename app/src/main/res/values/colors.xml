@@ -9,6 +9,7 @@
         <color name="colorAccent">#9022a3</color>-->
     <color name="backgroundColor">#FFF</color>
     <color name="black_overlay">#66000000</color>
+    <color name="grey">#A13A3A3A</color>
 
     <color name="blueBlackColor">#1c2833</color>
     <color name="statusColor">#f9f9f9</color>

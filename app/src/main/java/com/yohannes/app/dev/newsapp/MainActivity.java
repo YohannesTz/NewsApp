@@ -40,6 +40,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity
     //definig widgets
     private TextView userNameText;
     private TextView nameText;
-    private ImageView userAvatarimage;
+    private CircleImageView userAvatarimage;
     private TextView emptyText;
 
     private RequestQueue rq;
@@ -133,7 +135,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -191,7 +193,7 @@ public class MainActivity extends AppCompatActivity
         if (loggedInUser != null) {
             userNameText.setText(loggedInUser.getUsername());
             nameText.setText(loggedInUser.getName() + " " + loggedInUser.getFname());
-            Picasso.with(MainActivity.this).load(loggedInUser.getAvatar_link()).transform(new CircleAvatar()).into(userAvatarimage);
+            Picasso.with(MainActivity.this).load("https://robohash.org/" + loggedInUser.getUsername()).into(userAvatarimage);
         }
     }
 

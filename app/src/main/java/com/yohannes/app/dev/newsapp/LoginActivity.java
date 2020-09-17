@@ -177,7 +177,7 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.setMessage("Signing in...");
             progressDialog.setCancelable(false);
             progressDialog.setIndeterminate(true);
-//            progressDialog.show();
+            progressDialog.show();
         }
 
         @Override

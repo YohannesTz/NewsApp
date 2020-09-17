@@ -2,35 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
+    android:layout_height="wrap_content"
     android:background="@drawable/side_nav_bar"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:gravity="bottom"
     android:orientation="vertical"
-    android:gravity="bottom">
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userAvatarImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:src="@drawable/avatar_placeholder"
+        app:civ_border_color="@color/grey"
+        app:civ_border_width="1dp" />
 
     <TextView
         android:id="@+id/nameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Android Studio"
-        android:paddingTop="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="23sp" />
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="NamePlaceHolder"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/usernameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="android.studio@android.com"
-        android:textSize="18sp" />
+        android:text="subtitle placeholder" />
 
 </LinearLayout>

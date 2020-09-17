@@ -43,7 +43,6 @@ import java.util.Arrays;
 public class ChangeAvatar extends AppCompatActivity {
 
     private ImageView avatarFullScreen;
-    private Button uploadImagebtn;
     private int PICK_IMAGE_REQUEST = 1;
     private int CAMERA_REQUEST = 0;
     private Uri filepath;
@@ -58,7 +57,7 @@ public class ChangeAvatar extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         avatarFullScreen = findViewById(R.id.avatarFullScreen);
-        uploadImagebtn = findViewById(R.id.uploadImagebtn);
+        Button uploadImagebtn = findViewById(R.id.uploadImagebtn);
 
         DbManager dbManager = new DbManager(this, null, 1);
         final User loggedInuser = dbManager.getLastLoggedinUser();

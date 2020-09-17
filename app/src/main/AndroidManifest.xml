@@ -20,6 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Articlemedium"
+            android:label="@string/title_activity_articlemedium"
+            android:theme="@style/ScrollingActivityTheme" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".NoConnection"
             android:theme="@style/SplashScreenTheme" />
         <activity
@@ -45,12 +53,12 @@
             android:theme="@style/SplashScreenTheme" />
         <activity
             android:name=".Settings"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity android:name=".Settings"></activity> -->
+            android:label="@string/title_activity_settings" /> <!-- <activity android:name=".Settings"></activity> -->
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/ScrollingActivityTheme" />
+
         <activity android:name=".ChangeAvatar" />
         <activity android:name=".SavedArticles" />
         <activity

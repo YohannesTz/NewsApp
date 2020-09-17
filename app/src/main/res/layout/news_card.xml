@@ -18,13 +18,28 @@
         android:background="?android:selectableItemBackground"
         android:padding="8dp">
 
-        <TextView
-            android:id="@+id/newstitle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="This is title of the news"
-            android:fontFamily="sans-serif"
-            android:textSize="18sp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="6dp"
+                android:id="@+id/profileImageView"
+                android:src="@drawable/avatar_placeholder"
+                app:civ_border_color="@color/grey"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/newstitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="This is title of the news"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/newsdetail"
@@ -38,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="10dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -46,8 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Uploader"
-                android:fontFamily="sans-serif"
-                android:textSize="20sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/newsDate"
@@ -56,7 +71,7 @@
                 android:layout_weight="1"
                 android:text="2020-03-20"
                 android:fontFamily="sans-serif"
-                android:textSize="20sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/newsViews"
@@ -64,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:fontFamily="sans-serif"
-                android:textSize="20sp" />
+                android:textSize="13sp" />
         </LinearLayout>
 
     </LinearLayout>

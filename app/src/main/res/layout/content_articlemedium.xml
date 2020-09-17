@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.yohannes.app.dev.newsapp.ScrollingActivity"
-    tools:showIn="@layout/activity_scrolling">
+    tools:context="com.yohannes.app.dev.newsapp.Articlemedium"
+    tools:showIn="@layout/activity_articlemedium">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:padding="0dp">
 
         <TextView
-            android:id="@+id/titleText"
+            android:id="@+id/titleText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/largeText"
+            android:id="@+id/largeText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
@@ -37,6 +37,13 @@
             android:fontFamily="sans-serif-light"
             android:text="Loading ..."
             android:textSize="23sp" />
+
+        <ImageView
+            android:id="@+id/articleImage2"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            app:srcCompat="@drawable/avatar_placeholder" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

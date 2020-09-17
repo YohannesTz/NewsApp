@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,14 +21,12 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.yohannes.app.dev.newsapp.models.News;
 import com.yohannes.app.dev.newsapp.models.NewsDetail;
-import com.yohannes.app.dev.newsapp.util.ImageUtilty;
-import com.yohannes.app.dev.newsapp.util.SavedPostManager;
 import com.yohannes.app.dev.newsapp.util.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class Articlemedium extends AppCompatActivity {
 
     private News news;
     private NewsDetail newsDetail = null;
@@ -43,20 +39,21 @@ public class ScrollingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling);
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_articlemedium);
+        final Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         news = (News) getIntent().getSerializableExtra("News");
         //Fetch news Detail
-        getNewsDetail(news);
-
-        titletv = findViewById(R.id.titleText);
-        newsDetailtv = findViewById(R.id.largeText);
-        scrollImageView = findViewById(R.id.scrollImageView);
-        collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
+        if (news != null) {
+            getNewsDetail(news);
+        }
+        titletv = findViewById(R.id.titleText2);
+        newsDetailtv = findViewById(R.id.largeText2);
+        scrollImageView = findViewById(R.id.scrollImageView2);
+        collapsingToolbarLayout = findViewById(R.id.toolbar_layout2);
         collapsingToolbarLayout.setTitle("");
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpanededAppBar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
@@ -65,43 +62,6 @@ public class ScrollingActivity extends AppCompatActivity {
         if (newsDetail != null) {
             configureWidgets();
         }
-    }
-
-    private void savepost(NewsDetail newsDetail) {
-        SavedPostManager spm = new SavedPostManager(this, null, 1);
-        Bitmap bitmap = ((BitmapDrawable) scrollImageView.getDrawable()).getBitmap();
-        if (bitmap != null) {
-            spm.addpost(newsDetail.getId(), newsDetail.getNewsTitle(), newsDetail.getNewsDetail(), ImageUtilty.getBytes(bitmap));
-        }
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        //overridePendingTransition(R.anim.left_in, R.anim.right_out);
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        //overridePendingTransition(R.anim.left_in, R.anim.right_out);
-    }
-
-    private void configureWidgets() {
-        titletv.setText(newsDetail.getNewsTitle());
-        newsDetailtv.setText("\n" + newsDetail.getNewsDetail() + "\n" + "\n");
-        Picasso.with(this).load(newsDetail.getImageUrl()).into(scrollImageView, new Callback() {
-            @Override
-            public void onSuccess() {
-                Bitmap bitmap = ((BitmapDrawable) scrollImageView.getDrawable()).getBitmap();
-            }
-
-            @Override
-            public void onError() {
-                //// TODO: 8/6/2020 Add an error catching method
-            }
-        });
     }
 
     private void getNewsDetail(News n) {
@@ -127,10 +87,19 @@ public class ScrollingActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_scrolling, menu);
-        return true;
+    private void configureWidgets() {
+        titletv.setText(newsDetail.getNewsTitle());
+        newsDetailtv.setText("\n" + newsDetail.getNewsDetail() + "\n" + "\n");
+        Picasso.with(this).load(newsDetail.getImageUrl()).into(scrollImageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                Bitmap bitmap = ((BitmapDrawable) scrollImageView.getDrawable()).getBitmap();
+            }
+
+            @Override
+            public void onError() {
+                //// TODO: 8/6/2020 Add an error catching method
+            }
+        });
     }
 }
